@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using exDefault.Models;
+using exDefault.Services;
+using exDefault.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +14,8 @@ namespace exDefault.Controllers
     [ApiController]
     public class EntitiesController : ControllerBase
     {
-        private IEntitiesService entityService;
-        public EntitiesController(IEntitiesService entityService)
+        private IEntityService entityService;
+        public EntitiesController(IEntityService entityService)
         {
             this.entityService = entityService;
         }
@@ -22,7 +25,7 @@ namespace exDefault.Controllers
         /// </summary>
         /// <param name="from">Optional, filter by minimum DatePicked.</param>
         /// <param name="to">Optional, filter by maximum DatePicked.</param>
-        /// <returns>A list of Flower objects.</returns>
+        /// <returns>A list of Entities objects.</returns>
         [HttpGet]
         public IEnumerable<EntityGetModel> Get([FromQuery]DateTime? from, [FromQuery]DateTime? to)
         {
@@ -41,8 +44,33 @@ namespace exDefault.Controllers
             return Ok(found);
         }
 
-        
-        
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <remarks>
+        /// Sample request - POST
+        /// 
+        /// {
+        ///        "name": "string",
+        ///        "isOrNot": true,
+        ///        "dateOn": "2019-06-26T19:41:41.005Z",
+        ///        "dateOff": "2019-06-26T19:41:41.005Z",
+        ///        "entityType": "string",
+        ///        "comments" : [
+        ///            {
+        ///                "text": "test",
+        ///                "important" : true
+        ///                },
+        ///            {
+        ///                "text": "test1",
+        ///                "important" : false
+        ///                }
+        ///            ]
+        ///      }
+        /// </remarks>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
@@ -51,7 +79,7 @@ namespace exDefault.Controllers
             entityService.Create(entity);
         }
 
-        // PUT: api/Flowers/5
+        // PUT: api/Entities/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Entity entity)
         {

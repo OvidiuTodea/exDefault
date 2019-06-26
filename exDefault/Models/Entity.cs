@@ -20,5 +20,6 @@ namespace exDefault.Models
         public DateTime DateOff { get; set; }
         [EnumDataType(typeof(EntityType))]
         public EntityType EntityType { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

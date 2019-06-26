@@ -22,7 +22,7 @@ namespace exDefault.Models
                 {
                     Name = "Rose",
                     IsOrNot = true,
-                    EntityType = 0
+                    
                   
                     
                 },
@@ -30,7 +30,7 @@ namespace exDefault.Models
                 {
                     Name = "Daisy",
                     IsOrNot = false,
-                    EntityType = 1
+                   
                     
                 }
             );

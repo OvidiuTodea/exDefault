@@ -15,5 +15,6 @@ namespace exDefault.Models
         // DbSet = Repository
         // DbSet = O tabela din baza de date
         public DbSet<Entity> Entities { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
